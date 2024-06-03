@@ -15,7 +15,7 @@ public class BaseTest {
     public WebDriver driver;
     public CalculatorPage calculatorPage;
 
-    public WebDriver initializeDriver() throws IOException
+    public void initializeDriver() throws IOException
     {
         Properties prop = new Properties();
         FileInputStream fis = new FileInputStream(System.getProperty("user.dir")
@@ -28,13 +28,12 @@ public class BaseTest {
         driver.get(prop.getProperty("prod_url"));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
-        return driver;
     }
 
     @BeforeMethod(alwaysRun=true)
     public void launchApplication() throws IOException
     {
-        driver = initializeDriver();
+        initializeDriver();
         calculatorPage = new CalculatorPage(driver);
     }
 
