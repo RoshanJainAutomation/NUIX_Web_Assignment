@@ -23,16 +23,11 @@ public class BaseTest {
         prop.load(fis);
         String browserName = prop.getProperty("browser");
         if (browserName.equalsIgnoreCase("chrome")) {
-            try {
-                driver = new ChromeDriver();
-            }
-            catch(Exception e){
-                e.printStackTrace();
-
-            }driver.get(prop.getProperty("prod_url"));
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-            driver.manage().window().maximize();
+            driver = new ChromeDriver();
         }
+        driver.get(prop.getProperty("prod_url"));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
         return driver;
     }
 
